@@ -197,7 +197,6 @@ func EqualV1Services(k8sSVC1, k8sSVC2 *slim_corev1.Service, nodeAddressing datap
 
 	svcID1, svc1 := ParseService(k8sSVC1, nodeAddressing)
 	svcID2, svc2 := ParseService(k8sSVC2, nodeAddressing)
-
 	if svcID1 != svcID2 {
 		return false
 	}

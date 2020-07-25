@@ -741,7 +741,6 @@ func (s *K8sSuite) TestServiceCacheWith2EndpointSlice(c *check.C) {
 
 	swgSvcs := lock.NewStoppableWaitGroup()
 	svcID := svcCache.UpdateService(k8sSvc, swgSvcs)
-
 	time.Sleep(100 * time.Millisecond)
 
 	select {

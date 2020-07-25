@@ -385,6 +385,8 @@ type LoadBalancerIngress struct {
 type IPFamily string
 
 const (
+	// IPNone indicates that the IPFamily was not filled out
+	IPNone IPFamily = ""
 	// IPv4Protocol indicates that this IP is IPv4 protocol
 	IPv4Protocol IPFamily = "IPv4"
 	// IPv6Protocol indicates that this IP is IPv6 protocol
@@ -486,6 +488,12 @@ type ServiceSpec struct {
 	// sessionAffinityConfig contains the configurations of session affinity.
 	// +optional
 	SessionAffinityConfig *SessionAffinityConfig `json:"sessionAffinityConfig,omitempty" protobuf:"bytes,14,opt,name=sessionAffinityConfig"`
+
+	// ipFamily determines what version of IP will be allocated for the service when
+	// k8s is in dual-stack mode.
+	// More info: https://kubernetes.io/docs/concepts/services-networking/dual-stack/#services
+	// +optional
+	IPFamily IPFamily `json:"ipFamily,omitempty" protobuf:"bytes,15,opt,name=ipFamily"`
 }
 
 // ServicePort contains information on service's port.
