@@ -611,3 +611,8 @@ data:
 {{- else if ( ne $crdWaitTimeout "5m" ) }}
   crd-wait-timeout: {{ $crdWaitTimeout | quote }}
 {{- end }}
+
+{{- if and .Values.global.k8s .Values.global.k8s.serviceProxyName }}
+  # Configure service proxy name for Cilium.
+  service-proxy-name: {{ .Values.global.k8s.serviceProxyName | quote }}
+{{- end }}
