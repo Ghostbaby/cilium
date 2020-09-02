@@ -1001,6 +1001,20 @@ Meanwhile `GKE internal TCP/UDP load balancer
 <https://cloud.google.com/kubernetes-engine/docs/how-to/internal-load-balancing#lb_source_ranges>`__
 does not, so the feature must be kept enabled in order to restrict the access.
 
+Service Proxy Name Configuration
+********************************
+
+Like kube-proxy, Cilium also honors ``service.kubernetes.io/service-proxy-name`` label and only
+manages services that contain a matching service-proxy-name label. This name can be configured
+by setting ``global.k8s.serviceProxyName`` option and the behavior is identical to that of
+kube-proxy. The service proxy name defaults to an empty string which instructs Cilium to
+only manage services not having ``service.kubernetes.io/service-proxy-name`` label.
+
+.. note::
+
+    When setting the value for service proxy name make sure that default Kubernetes services
+    like ``kube-dns`` and ``kubernetes`` have the required label for Cilium to manage them.
+
 Limitations
 ###########
 
